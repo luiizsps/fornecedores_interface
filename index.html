@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Fornecedores</title>
+  </head>
+  <body>
+    <section class="container">
+      <header>
+        <nav class="nav-bar">
+          <figure><img src="img/logo.svg" alt="logo" class="logo" /></figure>
+          <div class="search-container">
+            <div class="search-parameters">
+              <select
+                name="search-select"
+                id="search-select"
+                class="search-select"
+              >
+                <option value="Filtros:">Filtros:</option>
+                <option value="Nome">Nome</option>
+                <option value="CNPJ">CNPJ</option>
+              </select>
+              <input
+                type="search"
+                name="search-fornecedor"
+                placeholder="Encontre seu fornecedor"
+                id="search-input"
+                class="search-input"
+              />
+              <img
+                src="img/search.svg"
+                alt="ícone de lupa"
+                class="lupa-icon"
+                id="lupa-icon"
+              />
+            </div>
+            <button class="btn-adicionar">
+              <img src="img/plus.svg" alt="ícone de mais" class="plus-icon" />
+              <span>Novo Fornecedor</span>
+            </button>
+          </div>
+        </nav>
+      </header>
+    </section>
+    <script src="script/script.js"></script>
+  </body>
+</html>

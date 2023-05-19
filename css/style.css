@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f6f6f6;
+  color: #10171d;
+}
+
+.container {
+  width: 120rem;
+  margin: 0 auto;
+}
+
+/* NAVIGATION BAR */
+
+.logo {
+  width: 20rem;
+  height: 6rem;
+}
+
+.nav-bar {
+  height: 12rem;
+  padding: 2.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-container {
+  width: 75rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-parameters {
+  width: 56rem;
+  height: 3.2rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  border: 1px solid #bec4c9;
+  border-radius: 20px;
+}
+
+.btn-adicionar {
+  width: 14rem;
+  height: 4rem;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  font-size: 1.1rem;
+  color: #dcdfe2;
+  background-color: #00a991;
+
+  border-radius: 30px;
+  box-shadow: 0px 2px 5px rgba(66, 59, 59, 0.25);
+}
+
+.btn-adicionar:hover {
+  box-shadow: none;
+  background-color: #007156;
+}
+
+.search-select {
+  width: 13%;
+  height: 100%;
+  padding-right: 0.4rem;
+  font-size: 1.4rem;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  color: #bec4c9;
+  background-color: transparent;
+
+  border-right: 1px solid #bec4c9;
+}
+
+.search-select:focus {
+  outline: none;
+}
+
+.search-input {
+  width: 87%;
+  height: 100%;
+  padding: 0.2rem 1.3rem;
+  padding-right: 0;
+  border: none;
+  font-family: inherit;
+  background-color: transparent;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 2px solid #e0e3e5;
+}
+
+.search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-input::placeholder {
+  font-size: 1.4rem;
+  color: #bec4c9;
+}
+
+/* Icons */
+
+.plus-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #dcdfe2;
+}
+
+.lupa-icon {
+  width: 1.4rem;
+  height: 1.5rem;
+  padding-left: 0.1rem;
+}
