@@ -15,12 +15,17 @@
     <title>Fornecedores</title>
   </head>
   <body>
-    <section class="container">
+    <section class="container" id="container">
       <header class="header">
         <nav class="nav-bar">
           <figure><img src="img/logo.svg" alt="logo" class="logo" /></figure>
           <div class="search-container">
-            <div class="search-parameters">
+            <form
+              action="/search"
+              method="get"
+              class="search-parameters"
+              id="search-form"
+            >
               <select
                 name="search-select"
                 id="search-select"
@@ -50,8 +55,8 @@
                 class="lupa-icon"
                 id="lupa-icon"
               />
-            </div>
-            <button class="btn-adicionar">
+            </form>
+            <button class="btn-adicionar" id="btn-adicionar">
               <img src="img/plus.svg" alt="ícone de mais" class="plus-icon" />
               <span>Novo Fornecedor</span>
             </button>
@@ -59,8 +64,9 @@
         </nav>
       </header>
       <main class="main">
-        <p class="main-title">Fornecedores Cadastrados</p>
-        <div class="fornecedores-container">
+        <p class="main-title" id="main-title">Fornecedores Cadastrados</p>
+        <div class="fornecedores-container" id="fornecedores-grid">
+          <!--
           <div class="fornecedor">
             <img
               src="img/heineken.png"
@@ -80,64 +86,127 @@
             </div>
             <button class="btn-visualizar-fornecedor">Visualizar</button>
           </div>
-          <div class="fornecedor">
-            <img
-              src="img/heineken.png"
-              alt="company profile picture"
-              class="company-logo"
-            />
-            <div class="company-information">
-              <p class="company-name">Heineken Brasil</p>
-              <div class="adtional-information">
-                <p class="company-email">
-                  E-mail: <span class="email">heinekenbr@gmail.com</span>
-                </p>
-                <p class="company-CNPJ">
-                  CNPJ: <span class="cnpj">068.906.368-96</span>
-                </p>
-              </div>
-            </div>
-            <button class="btn-visualizar-fornecedor">Visualizar</button>
+          -->
+        </div>
+        <div class="hidden" id="container-novo-fornecedor">
+          <div class="side-bar-novo-fornecedor">
+            <img src="img/barra-lateral-inscrição.svg" alt="barra lateral" />
           </div>
-          <div class="fornecedor">
-            <img
-              src="img/heineken.png"
-              alt="company profile picture"
-              class="company-logo"
-            />
-            <div class="company-information">
-              <p class="company-name">Heineken Brasil</p>
-              <div class="adtional-information">
-                <p class="company-email">
-                  E-mail: <span class="email">heinekenbr@gmail.com</span>
-                </p>
-                <p class="company-CNPJ">
-                  CNPJ: <span class="cnpj">068.906.368-96</span>
-                </p>
+          <div class="inscricao-novo-fornecedor">
+            <div class="header-inscricao">
+              <div class="container-imput-file">
+                <div class="input-file-holder" id="input-file-holder">
+                  <label for="input-file"
+                    ><img
+                      src="img/camera-viewfinder 1.svg"
+                      alt="botao para inserir foto"
+                      class="profile-img-input"
+                  /></label>
+                  <input type="file" id="input-file" class="input-file" />
+                </div>
+                <p class="input-file-legenda">Adicione uma foto de perfil</p>
+                <a
+                  class="fechar-inscricao"
+                  id="fechar-inscricao"
+                  style="cursor: pointer"
+                >
+                  <img src="img/fechar.svg" alt="x" />
+                </a>
               </div>
             </div>
-            <button class="btn-visualizar-fornecedor">Visualizar</button>
-          </div>
-          <div class="fornecedor">
-            <img
-              src="img/heineken.png"
-              alt="company profile picture"
-              class="company-logo"
-            />
-            <div class="company-information">
-              <p class="company-name">Heineken Brasil</p>
-              <div class="adtional-information">
-                <p class="company-email">
-                  E-mail: <span class="email">heinekenbr@gmail.com</span>
-                </p>
-                <p class="company-CNPJ">
-                  CNPJ: <span class="cnpj">068.906.368-96</span>
-                </p>
+            <div class="user-information-inscricao">
+              <div class="campo">
+                <div>
+                  <label for="incricao-nome" class="label-cadastro"
+                    >Nome/Razão social</label
+                  >
+                  <input
+                    type="text"
+                    id="inscricao-nome"
+                    class="cadastro-input"
+                    placeholder="Digite o nome do Fornecedor"
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="inscricao-cnpj" class="label-cadastro"
+                    >CNPJ</label
+                  >
+                  <input
+                    type="text"
+                    id="inscricao-cnpj"
+                    class="cadastro-input"
+                    placeholder="8908.4567.3547-00001/34"
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="inscricao-email" class="label-cadastro"
+                    >E-mail</label
+                  >
+                  <input
+                    type="text"
+                    id="inscricao-email"
+                    class="cadastro-input"
+                    placeholder="exemplo@gmail.com"
+                  />
+                </div>
+              </div>
+              <div class="cadastro-informacao-adicional">
+                <p class="label-cadastro">Serviço fornecido</p>
+                <div class="checkbox-container">
+                  <div class="checkbox-holder">
+                    <input
+                      type="checkbox"
+                      id="cosmeticos-checkbox"
+                      class="checkbox"
+                    />
+                    <label for="cosmeticos-checkbox">Cosméticos</label>
+                  </div>
+                  <div class="checkbox-holder">
+                    <input
+                      type="checkbox"
+                      id="alimentos-checkbox"
+                      class="checkbox"
+                    />
+                    <label for="alimentos-checkbox">Alimentos</label>
+                  </div>
+                  <div class="checkbox-holder">
+                    <input
+                      type="checkbox"
+                      id="embalagens-checkbox"
+                      class="checkbox"
+                    />
+                    <label for="embalagens-checkbox">Embalagens</label>
+                  </div>
+                  <div class="checkbox-holder">
+                    <input
+                      type="checkbox"
+                      id="componentes-checkbox"
+                      class="checkbox"
+                    />
+                    <label for="componentes-checkbox"
+                      >Componentes Eletrônicos</label
+                    >
+                  </div>
+                  <div class="checkbox-holder">
+                    <input
+                      type="checkbox"
+                      id="outros-checkbox"
+                      class="checkbox"
+                    />
+                    <label for="outros-checkbox">Outros: </label>
+                    <input type="text" />
+                  </div>
+                </div>
               </div>
             </div>
-            <button class="btn-visualizar-fornecedor">Visualizar</button>
+            <button class="btn-enviar-inscricao">Cadastrar</button>
           </div>
         </div>
+        <div id="camadaSobreposicao" class="escondido"></div>
       </main>
     </section>
     <script src="script/script.js"></script>
