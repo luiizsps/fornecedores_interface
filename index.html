@@ -92,7 +92,11 @@
           <div class="side-bar-novo-fornecedor">
             <img src="img/barra-lateral-inscrição.svg" alt="barra lateral" />
           </div>
-          <div class="inscricao-novo-fornecedor">
+          <form
+            class="inscricao-novo-fornecedor"
+            id="inscricao-novo-fornecedor"
+            method="POST"
+          >
             <div class="header-inscricao">
               <div class="container-imput-file">
                 <div class="input-file-holder" id="input-file-holder">
@@ -129,6 +133,7 @@
                     id="inscricao-nome"
                     class="cadastro-input"
                     placeholder="Digite o nome do Fornecedor"
+                    required
                   />
                 </div>
               </div>
@@ -142,6 +147,8 @@
                     id="inscricao-cnpj"
                     class="cadastro-input"
                     placeholder="8908.4567.3547-00001/34"
+                    maxlength="14"
+                    required
                   />
                 </div>
               </div>
@@ -155,9 +162,39 @@
                     id="inscricao-email"
                     class="cadastro-input"
                     placeholder="exemplo@gmail.com"
+                    required
                   />
                 </div>
               </div>
+              <div class="campo">
+                <div>
+                  <label for="inscricao-endereco" class="label-cadastro"
+                    >Endereço</label
+                  >
+                  <input
+                    type="text"
+                    id="inscricao-endereco"
+                    class="cadastro-input"
+                    placeholder="Informe seu endereço"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="inscricao-telefone" class="label-cadastro"
+                    >Telefone</label
+                  >
+                  <input
+                    type="text"
+                    id="inscricao-telefone"
+                    class="cadastro-input"
+                    placeholder="(21)993028883"
+                    required
+                  />
+                </div>
+              </div>
+              <!--
               <div class="cadastro-informacao-adicional">
                 <p class="label-cadastro">Serviço fornecido</p>
                 <div class="checkbox-container">
@@ -206,9 +243,16 @@
                   </div>
                 </div>
               </div>
+              -->
             </div>
-            <button class="btn-enviar-inscricao">Cadastrar</button>
-          </div>
+            <button
+              type="submit"
+              class="btn-enviar-inscricao"
+              id="btn-enviar-inscricao"
+            >
+              Cadastrar
+            </button>
+          </form>
         </div>
         <div id="camadaSobreposicao" class="escondido"></div>
       </main>
