@@ -87,19 +87,38 @@ btnAdicionar.addEventListener("click", function (event) {
   camadaSobreposicao.classList.add("camadaSobreposicao");
 });
 
-/* fecha tela de cadastro */
-const btnFecharCadastro = document.getElementById("fechar-inscricao");
-btnFecharCadastro.addEventListener("click", function (event) {
-  const telaDeCadastro = document.getElementById("container-novo-fornecedor");
+/*limpa tela de cadastro */
+const enderecoForm = document.getElementById("inscricao-endereco");
+const emailForm = document.getElementById("inscricao-email");
+const cnpjForm = document.getElementById("inscricao-cnpj");
+const nomeForm = document.getElementById("inscricao-nome");
+const telefoneForm = document.getElementById("inscricao-telefone");
+function limpaCampos() {
+  enderecoForm.value = "";
+  emailForm.value = "";
+  cnpjForm.value = "";
+  nomeForm.value = "";
+  telefoneForm.value = "";
+}
 
+/* fecha tela de cadastro com botao */
+const btnFecharCadastro = document.getElementById("fechar-inscricao");
+btnFecharCadastro.addEventListener("click", fechaCadastro);
+
+/* função para fechar a tela de cadastro */
+function fechaCadastro() {
+  const telaDeCadastro = document.getElementById("container-novo-fornecedor");
   telaDeCadastro.classList.remove("container-novo-fornecedor");
   telaDeCadastro.classList.add("hidden");
   camadaSobreposicao.classList.remove("camadaSobreposicao");
-});
 
+  limpaCampos();
+  buscarTodos();
+}
+
+/* seta imagem selecionada como backgroud-image */
 const inputFile = document.getElementById("input-file");
 const inputElement = document.getElementById("input-file-holder");
-
 inputFile.addEventListener("change", function (event) {
   const file = event.target.files[0];
   const reader = new FileReader();
@@ -200,4 +219,46 @@ function buscarTodos() {
 
   xhr.send();
 }
+
+const postForm = document.getElementById("inscricao-novo-fornecedor");
+
+postForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const jsonBody = JSON.stringify({
+    cnpj: cnpjForm.value,
+    nome: nomeForm.value,
+    endereço: enderecoForm.value,
+    telefone: telefoneForm.value,
+    email: emailForm.value,
+  });
+
+  console.log(jsonBody);
+
+  const url = "http://localhost:8080/fornecedores/add";
+
+  const xhr = new XMLHttpRequest();
+
+  // Abre a conexão com o método POST
+  xhr.open("POST", url, true);
+
+  // Define o tipo de conteúdo da requisição como application/json
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  // Define a função de callback para o evento de conclusão da requisição
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        console.log("Requisição enviada com sucesso!");
+      } else {
+        console.error("Ocorreu um erro na requisição:", xhr.status);
+      }
+    }
+  };
+
+  fechaCadastro();
+
+  // Envia a requisição com o corpo JSON
+  xhr.send(jsonBody);
+});
 
