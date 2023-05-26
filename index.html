@@ -66,8 +66,7 @@
       <main class="main">
         <p class="main-title" id="main-title">Fornecedores Cadastrados</p>
         <div class="fornecedores-container" id="fornecedores-grid">
-          <!--
-          <div class="fornecedor">
+          <div class="fornecedor" style="display: none">
             <img
               src="img/heineken.png"
               alt="company profile picture"
@@ -84,9 +83,13 @@
                 </p>
               </div>
             </div>
-            <button class="btn-visualizar-fornecedor">Visualizar</button>
+            <button
+              class="btn-visualizar-fornecedor"
+              id="btn-visualizar-fornecedor"
+            >
+              Visualizar
+            </button>
           </div>
-          -->
         </div>
         <div class="hidden" id="container-novo-fornecedor">
           <div class="side-bar-novo-fornecedor">
@@ -254,6 +257,340 @@
             </button>
           </form>
         </div>
+        <div class="hidden" id="container-visualizar-fornecedor">
+          <div class="side-bar-visualizar-fornecedor">
+            <img src="img/barra-lateral-visualizar.svg" alt="barra lateral" />
+          </div>
+          <form
+            class="visualizar-fornecedor"
+            id="visualizar-fornecedor"
+            method="POST"
+          >
+            <div class="header-visualizar">
+              <div class="container-imput-file">
+                <div
+                  class="input-file-holder"
+                  id="input-file-holder-visualizar"
+                >
+                  <label for="input-file"
+                    ><img
+                      src="img/camera-viewfinder 1.svg"
+                      alt="botao para inserir foto"
+                      class="profile-img-input"
+                      id="camera-view-finder"
+                  /></label>
+                  <input
+                    type="file"
+                    id="input-file-visualizar"
+                    class="profile-img-file"
+                  />
+                </div>
+                <p class="img-file-legenda">Foto de perfil</p>
+                <a
+                  class="fechar-inscricao"
+                  id="fechar-visualizacao"
+                  style="cursor: pointer"
+                >
+                  <img
+                    src="img/fechar.svg"
+                    alt="x"
+                    class="btn-fechar-inscricao"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="user-information-visualizar">
+              <div class="campo-visualizar">
+                <div>
+                  <label for="nome-fornecedor" class="label-visualizar"
+                    >Nome/Razão social</label
+                  >
+                  <input
+                    type="text"
+                    id="visualizar-nome"
+                    class="informação-fornecedor"
+                    value="Heineken Brasil"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="campo-visualizar">
+                <div>
+                  <label for="inscricao-cnpj" class="label-visualizar"
+                    >CNPJ</label
+                  >
+                  <input
+                    type="text"
+                    id="visualizar-cnpj"
+                    class="informação-fornecedor"
+                    value="8908.4567.3547-00001/34"
+                    maxlength="14"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="campo-visualizar">
+                <div>
+                  <label for="visualizar-email" class="label-visualizar"
+                    >E-mail</label
+                  >
+                  <input
+                    class="informação-fornecedor"
+                    type="text"
+                    id="visualizar-email"
+                    value="exemplo@gmail.com"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="campo-visualizar">
+                <div>
+                  <label for="visualizar-endereco" class="label-visualizar"
+                    >Endereço</label
+                  >
+                  <input
+                    type="text"
+                    id="visualizar-endereco"
+                    class="informação-fornecedor"
+                    value="Rua das flores, nº 332, Jasmin"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="campo-visualizar">
+                <div>
+                  <label for="inscricao-telefone" class="label-visualizar"
+                    >Telefone</label
+                  >
+                  <input
+                    type="text"
+                    value="(75)98264-6563"
+                    id="visualizar-telefone"
+                    class="informação-fornecedor"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="container-apagar-atualizar-fornecedor">
+              <button
+                type="submit"
+                class="btn-apagar-fornecedor"
+                id="btn-alterar-fornecedor"
+              >
+                <img
+                  src="img/icon-trash.svg"
+                  alt="icone de alteração de dados"
+                />
+                Apagar fornecedor
+              </button>
+
+              <button
+                type="submit"
+                class="btn-atualizar-dados"
+                id="btn-alterar-dados"
+              >
+                <img
+                  src="img/icon-pencil.svg"
+                  alt="icone de alteração de dados"
+                />
+                Atualizar dados
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="hidden" id="container-atualizar-fornecedor">
+          <div class="side-bar-atualizar-fornecedor">
+            <img src="img/barra-lateral-atualizar.svg" alt="barra lateral" />
+          </div>
+          <form
+            class="atualizar-fornecedor"
+            id="atualizar-fornecedor"
+            method="POST"
+          >
+            <div class="header-atualizar">
+              <div class="container-imput-file">
+                <div class="input-file-holder" id="input-file-holder">
+                  <label for="input-file"
+                    ><img
+                      src="img/camera-viewfinder 1.svg"
+                      alt="botao para inserir foto"
+                      class="profile-img-input"
+                  /></label>
+                  <input type="file" id="input-file" class="input-file" />
+                </div>
+                <p class="input-file-legenda">Altere sua foto de perfil</p>
+                <a
+                  class="fechar-inscricao"
+                  id="fechar-atualizacao"
+                  style="cursor: pointer"
+                >
+                  <img
+                    src="img/fechar.svg"
+                    alt="x"
+                    class="btn-fechar-inscricao"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="user-information-atualizar">
+              <div class="campo">
+                <div>
+                  <label for="atualizar-nome" class="label-atualizar"
+                    >Nome/Razão social</label
+                  >
+                  <input
+                    type="text"
+                    id="atualizar-nome"
+                    class="atualizar-input"
+                    placeholder="Digite o nome do Fornecedor"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="atualizar-cnpj" class="label-atualizar"
+                    >CNPJ</label
+                  >
+                  <input
+                    type="text"
+                    id="atualizar-cnpj"
+                    class="atualizar-input"
+                    placeholder="8908.4567.3547-00001/34"
+                    maxlength="14"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="atualizar-email" class="label-atualizar"
+                    >E-mail</label
+                  >
+                  <input
+                    type="text"
+                    id="atualizar-email"
+                    class="atualizar-input"
+                    placeholder="exemplo@gmail.com"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="atualizar-endereco" class="label-atualizar"
+                    >Endereço</label
+                  >
+                  <input
+                    type="text"
+                    id="atualizar-endereco"
+                    class="atualizar-input"
+                    placeholder="Informe seu endereço"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="campo">
+                <div>
+                  <label for="atualizar-telefone" class="label-atualizar"
+                    >Telefone</label
+                  >
+                  <input
+                    type="text"
+                    id="atualizar-telefone"
+                    class="atualizar-input"
+                    placeholder="(21)993028883"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn-atualizar-fornecedor"
+              id="btn-salvar-alteracao"
+            >
+              <img
+                src="img/icon-pencil.svg"
+                alt="icone de alteração de dados"
+              />
+              Salvar alterações
+            </button>
+          </form>
+        </div>
+
+        <div class="hidden" id="modal">
+          <div
+            class="modal-container-fornecedor-adicionado"
+            id="modal-container-fornecedor-adicionado"
+          >
+            <div class="modal-header">
+              <img
+                src="img/pop up-icon-check.svg"
+                alt="icone de salvar alterações"
+              />
+              <h1 class="modal-title">Fornecedor adicionado com sucesso!</h1>
+            </div>
+            <div class="modal-body">
+              <p>Seus dados armazenados e organizados com segurança.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden" id="modal">
+          <div class="modal-container-fornecedor-removido">
+            <div class="modal-header">
+              <img
+                src="img/pop up-icon-check.svg"
+                alt="icone de salvar alterações"
+              />
+              <h1 class="modal-title">Fornecedor removido da sua lista</h1>
+            </div>
+            <div class="modal-body">
+              <p>Atenção: Essa ação não poderá ser desfeita.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden" id="modal">
+          <div class="modal-container-salvar-alteracao">
+            <div class="modal-header">
+              <img
+                src="img/pop-up-icon-pencil.svg"
+                alt="icone de salvar alterações"
+              />
+              <h1 class="modal-title">Suas alterações foram salvas!</h1>
+            </div>
+            <div class="modal-body">
+              <p>Mantenha os dados dos seus fornecedores sempre atualizados.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden" id="modal">
+          <div class="modal-container-confirmar-remocao">
+            <div class="modal-header">
+              <img src="img/icon-danger.svg" alt="icone de salvar alterações" />
+              <h1 class="modal-title">Tem certeza que deseja remover?</h1>
+            </div>
+            <div class="modal-body">
+              <div class="container-remover-cancelar">
+                <button
+                  class="btn-confirmar-remocao"
+                  id="btn-confirmar-remocao"
+                >
+                  Sim, tenho certeza.
+                </button>
+                <button class="btn-cancelar-remocao" id="btn-cancelar-remocao">
+                  Não, cancelar.
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="camadaSobreposicao" class="escondido"></div>
       </main>
     </section>
