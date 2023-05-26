@@ -7,7 +7,7 @@ function atualizarGrid(fornecedores) {
     fornecedorDiv.classList.add("fornecedor");
 
     const imagem = document.createElement("img");
-    imagem.src = "img/heineken.png";
+    imagem.src = fornecedor.foto;
     imagem.alt = "company profile picture";
     imagem.classList.add("company-logo");
     fornecedorDiv.appendChild(imagem);
@@ -46,9 +46,12 @@ function atualizarGrid(fornecedores) {
 
     const visualizarButton = document.createElement("button");
     visualizarButton.classList.add("btn-visualizar-fornecedor");
+    visualizarButton.classList.add(fornecedor.cnpj);
     visualizarButton.textContent = "Visualizar";
+    visualizarButton.addEventListener("click", function () {
+      abreVisualizacao(fornecedor.cnpj);
+    });
     fornecedorDiv.appendChild(visualizarButton);
-
     grid.appendChild(fornecedorDiv);
   });
 }
@@ -84,41 +87,147 @@ btnAdicionar.addEventListener("click", function (event) {
 
   telaDeCadastro.classList.remove("hidden");
   telaDeCadastro.classList.add("container-novo-fornecedor");
+  camadaSobreposicao.classList.remove("hidden");
   camadaSobreposicao.classList.add("camadaSobreposicao");
 });
 
-/*limpa tela de cadastro */
+/* abre confirmacao */
+const telaDeConfirmacao = document.getElementById(
+  "modal-container-fornecedor-adicionado"
+);
+function abreConfirmacao() {
+  telaDeConfirmacao.classList.remove("hidden");
+  telaDeConfirmacao.classList.add("modal-container-fornecedor-adicionado");
+
+  setTimeout(function () {}, 4000);
+
+  telaDeConfirmacao.classList.remove("modal-container-fornecedor-adicionado");
+  telaDeConfirmacao.classList.add("hidden");
+}
+
+/* limpa tela de cadastro */
 const enderecoForm = document.getElementById("inscricao-endereco");
 const emailForm = document.getElementById("inscricao-email");
 const cnpjForm = document.getElementById("inscricao-cnpj");
 const nomeForm = document.getElementById("inscricao-nome");
 const telefoneForm = document.getElementById("inscricao-telefone");
+const inputElement = document.getElementById("input-file-holder");
 function limpaCampos() {
   enderecoForm.value = "";
   emailForm.value = "";
   cnpjForm.value = "";
   nomeForm.value = "";
   telefoneForm.value = "";
+  inputElement.style.backgroundColor = "#fff";
+  inputElement.style.backgroundImage = "none";
 }
 
-/* fecha tela de cadastro com botao */
+/* fecha tela de cadastro */
 const btnFecharCadastro = document.getElementById("fechar-inscricao");
 btnFecharCadastro.addEventListener("click", fechaCadastro);
 
-/* função para fechar a tela de cadastro */
+/* função para fechar a tela de cadastro com botao */
 function fechaCadastro() {
   const telaDeCadastro = document.getElementById("container-novo-fornecedor");
   telaDeCadastro.classList.remove("container-novo-fornecedor");
   telaDeCadastro.classList.add("hidden");
+  camadaSobreposicao.classList.add("hidden");
   camadaSobreposicao.classList.remove("camadaSobreposicao");
 
-  limpaCampos();
   buscarTodos();
+  limpaCampos();
 }
+
+/* função para fechar cadastro após envio de formulário */
+function confirmaCadastro() {
+  abreConfirmacao();
+  const telaDeCadastro = document.getElementById("container-novo-fornecedor");
+  telaDeCadastro.classList.remove("container-novo-fornecedor");
+  telaDeCadastro.classList.add("hidden");
+  camadaSobreposicao.classList.add("hidden");
+  camadaSobreposicao.classList.remove("camadaSobreposicao");
+
+  buscarTodos();
+  limpaCampos();
+}
+
+/* abre tela de visualização */
+let btnsVisualizarFornecedor = document.getElementsByClassName(
+  "btn-visualizar-fornecedor"
+);
+const containerVisualizarFornecedor = document.getElementById(
+  "container-visualizar-fornecedor"
+);
+
+function abreVisualizacao(cnpj) {
+  buscarPorCNPJ(cnpj);
+  containerVisualizarFornecedor.classList.remove("hidden");
+  containerVisualizarFornecedor.classList.add(
+    "container-visualizar-fornecedor"
+  );
+}
+
+/*constroi tela de visualização */
+function constroiVisualizacao(fornecedor) {
+  const enderecoForm = document.getElementById("visualizar-endereco");
+  const emailForm = document.getElementById("visualizar-email");
+  const cnpjForm = document.getElementById("visualizar-cnpj");
+  const nomeForm = document.getElementById("visualizar-nome");
+  const telefoneForm = document.getElementById("visualizar-telefone");
+  const inputElement = document.getElementById("input-file-holder-visualizar");
+  const camerViewIcon = document.getElementById("camera-view-finder");
+
+  console.log(fornecedor.foto);
+
+  enderecoForm.value = fornecedor.endereço;
+  emailForm.value = fornecedor.email;
+  cnpjForm.value = fornecedor.cnpj;
+  nomeForm.value = fornecedor.nome;
+  telefoneForm.value = fornecedor.telefone;
+
+  inputElement.style.backgroundColor = "transparent";
+  inputElement.style.padding = "6rem 6.25rem";
+  camerViewIcon.style.display = "none";
+  inputElement.style.backgroundImage = `url("${fornecedor.foto}")`;
+  inputElement.style.backgroundRepeat = "no-repeat";
+  camadaSobreposicao.classList.add("camadaSobreposicao");
+  camadaSobreposicao.classList.remove("hidden");
+}
+
+/* fecha tela de visualização */
+const fechaVisualizacao = document.getElementById("fechar-visualizacao");
+fechaVisualizacao.addEventListener("click", function (event) {
+  containerVisualizarFornecedor.classList.remove(
+    "container-visualizar-fornecedor"
+  );
+  containerVisualizarFornecedor.classList.add("hidden");
+  camadaSobreposicao.classList.remove("camadaSobreposicao");
+  camadaSobreposicao.classList.add("hidden");
+});
+
+/* abre tela de atualização */
+const containerAtualizarFornecedor = document.getElementById(
+  "container-atualizar-fornecedor"
+);
+const btnEditarFornecedor = document.getElementById("btn-alterar-dados");
+btnEditarFornecedor.addEventListener("click", function (event) {
+  containerAtualizarFornecedor.classList.remove("hidden");
+  containerAtualizarFornecedor.classList.add("container-atualizar-fornecedor");
+});
+
+/* fecha tela de visualização */
+const btnFecharAtualizacao = document.getElementById("fechar-atualizacao");
+btnFecharAtualizacao.addEventListener("click", function (event) {
+  containerAtualizarFornecedor.classList.remove(
+    "container-atualizar-fornecedor"
+  );
+  containerAtualizarFornecedor.classList.add("hidden");
+});
 
 /* seta imagem selecionada como backgroud-image */
 const inputFile = document.getElementById("input-file");
-const inputElement = document.getElementById("input-file-holder");
+let filePath = "img/sem-foto.svg";
+
 inputFile.addEventListener("change", function (event) {
   const file = event.target.files[0];
   const reader = new FileReader();
@@ -131,6 +240,7 @@ inputFile.addEventListener("change", function (event) {
   });
 
   if (file) {
+    filePath = `img/${file.name}`;
     reader.readAsDataURL(file);
   }
 });
@@ -231,6 +341,7 @@ postForm.addEventListener("submit", function (event) {
     endereço: enderecoForm.value,
     telefone: telefoneForm.value,
     email: emailForm.value,
+    foto: filePath,
   });
 
   console.log(jsonBody);
@@ -250,15 +361,32 @@ postForm.addEventListener("submit", function (event) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         console.log("Requisição enviada com sucesso!");
+        confirmaCadastro();
       } else {
         console.error("Ocorreu um erro na requisição:", xhr.status);
       }
     }
   };
 
-  fechaCadastro();
-
   // Envia a requisição com o corpo JSON
   xhr.send(jsonBody);
 });
 
+function buscarPorCNPJ(cnpj) {
+  const url = `http://localhost:8080/fornecedores/search?search-select=
+  CNPJ&search-fornecedor=${cnpj}`;
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", url, true);
+
+  xhr.open("GET", url, true);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let fornecedores = JSON.parse(this.responseText);
+      constroiVisualizacao(fornecedores[0]);
+    }
+  };
+
+  xhr.send();
+}
