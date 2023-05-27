@@ -91,6 +91,7 @@
             </button>
           </div>
         </div>
+        <div id="camadaSobreposicao" class="hidden"></div>
         <div class="hidden" id="container-novo-fornecedor">
           <div class="side-bar-novo-fornecedor">
             <img src="img/barra-lateral-inscrição.svg" alt="barra lateral" />
@@ -373,11 +374,7 @@
               </div>
             </div>
             <div class="container-apagar-atualizar-fornecedor">
-              <button
-                type="submit"
-                class="btn-apagar-fornecedor"
-                id="btn-alterar-fornecedor"
-              >
+              <button class="btn-apagar-fornecedor" id="btn-apagar-fornecedor">
                 <img
                   src="img/icon-trash.svg"
                   alt="icone de alteração de dados"
@@ -385,11 +382,7 @@
                 Apagar fornecedor
               </button>
 
-              <button
-                type="submit"
-                class="btn-atualizar-dados"
-                id="btn-alterar-dados"
-              >
+              <button class="btn-atualizar-dados" id="btn-alterar-dados">
                 <img
                   src="img/icon-pencil.svg"
                   alt="icone de alteração de dados"
@@ -411,14 +404,19 @@
           >
             <div class="header-atualizar">
               <div class="container-imput-file">
-                <div class="input-file-holder" id="input-file-holder">
-                  <label for="input-file"
+                <div class="input-file-holder" id="input-file-holder-atualizar">
+                  <label for="input-file-atualizar"
                     ><img
                       src="img/camera-viewfinder 1.svg"
                       alt="botao para inserir foto"
                       class="profile-img-input"
+                      id="profile-img-input-atualizar"
                   /></label>
-                  <input type="file" id="input-file" class="input-file" />
+                  <input
+                    type="file"
+                    id="input-file-atualizar"
+                    class="input-file"
+                  />
                 </div>
                 <p class="input-file-legenda">Altere sua foto de perfil</p>
                 <a
@@ -451,7 +449,10 @@
               </div>
               <div class="campo">
                 <div>
-                  <label for="atualizar-cnpj" class="label-atualizar"
+                  <label
+                    for="atualizar-cnpj"
+                    class="label-atualizar"
+                    id="label-cnpj-atualizar"
                     >CNPJ</label
                   >
                   <input
@@ -460,7 +461,7 @@
                     class="atualizar-input"
                     placeholder="8908.4567.3547-00001/34"
                     maxlength="14"
-                    required
+                    readonly
                   />
                 </div>
               </div>
@@ -520,12 +521,9 @@
             </button>
           </form>
         </div>
-
-        <div class="hidden" id="modal">
-          <div
-            class="modal-container-fornecedor-adicionado"
-            id="modal-container-fornecedor-adicionado"
-          >
+        <div id="segunda-camada-sobreposicao" class="hidden"></div>
+        <div class="modal" id="modal">
+          <div class="hidden" id="modal-container-fornecedor-adicionado">
             <div class="modal-header">
               <img
                 src="img/pop up-icon-check.svg"
@@ -539,8 +537,8 @@
           </div>
         </div>
 
-        <div class="hidden" id="modal">
-          <div class="modal-container-fornecedor-removido">
+        <div class="modal" id="modal">
+          <div class="hidden" id="modal-container-fornecedor-removido">
             <div class="modal-header">
               <img
                 src="img/pop up-icon-check.svg"
@@ -554,8 +552,8 @@
           </div>
         </div>
 
-        <div class="hidden" id="modal">
-          <div class="modal-container-salvar-alteracao">
+        <div class="modal" id="modal">
+          <div class="hidden" id="modal-container-salvar-alteracao">
             <div class="modal-header">
               <img
                 src="img/pop-up-icon-pencil.svg"
@@ -569,8 +567,8 @@
           </div>
         </div>
 
-        <div class="hidden" id="modal">
-          <div class="modal-container-confirmar-remocao">
+        <div class="modal" id="modal">
+          <div class="hidden" id="modal-container-confirmar-remocao">
             <div class="modal-header">
               <img src="img/icon-danger.svg" alt="icone de salvar alterações" />
               <h1 class="modal-title">Tem certeza que deseja remover?</h1>
@@ -590,8 +588,6 @@
             </div>
           </div>
         </div>
-
-        <div id="camadaSobreposicao" class="escondido"></div>
       </main>
     </section>
     <script src="script/script.js"></script>
